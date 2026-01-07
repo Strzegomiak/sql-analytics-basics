@@ -1,6 +1,3 @@
-# sql-analytics-basics
-SQL queries for basic business analytics (transactions, revenue, trends)
-
 # SQL Analytics Basics
 
 This repository contains basic SQL queries used for business and financial analytics.
