@@ -191,4 +191,55 @@ ORDER BY avg_transaction_value DESC;
 -- Next, the data is grouped by month and the average amount is calculated for each month.
 -- Finally, the results are ordered from the highest to the lowest average transaction value.
 
+-- ================================
+-- Day 8 repeat day - Monthly revenue analysis
+-- ================================
+
+-- Assumed table: transactions
+-- Columns:
+--   transaction_id      (unique id)
+--   transaction_date    (date/time of transaction)
+--   amount              (transaction value, positive numbers assumed)
+
+ZADANIE A:
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    SUM(amount) AS revenue_of_month
+FROM transactions
+GROUP BY DATE_TRUNK('month', transaction_date)
+ORDER BY SUM(amount) DESC;
+-- Query shows total revenue per month
+-- Data is grouped by months
+-- Result is sorted from the highest revenue per month 
+
+ZADANIE B:
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    COUNT(*) AS numbers_of_transaction_monthly
+FROM transactions
+GROUP BY DATE_TRUNK('month', transaction_date)
+ORDER BY COUNT(*) DESC;
+-- Query shows how many  transactions were per month
+-- Data is grouped by months
+-- Result is sorted from the highest number of transaction monthly
+
+ZADANIE C
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    AVG(amount) AS average_amount_by_month
+FROM transactions
+GROUP BY DATE_TRUNK('month', transaction_date)
+ORDER BY AVG(amount) DESC;
+-- Query shows average amount of transaction per month
+-- Data is grouped by months
+-- Result is sorted from the highest average amount of transaction per month 
+
+
+
+
+
+
+
+
+
 
