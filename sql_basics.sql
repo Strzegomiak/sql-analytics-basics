@@ -139,7 +139,6 @@ GROUP BY DATE_TRUNC('month', transaction_date)
 HAVING COUNT(*) >= 3
 ORDER BY avg_amount DESC;
 
-
 -- 4. Mini task: transactions per month
 -- Only transactions with amount > 200
 -- Only months with at least 2 transactions
@@ -153,5 +152,43 @@ GROUP BY DATE_TRUNC('month', transaction_date)
 HAVING COUNT(*) >= 2
 ORDER BY amount_of_transactions_per_month DESC;
 
+-- Total number of transactions
+SELECT COUNT(*) AS total_transactions
+FROM transactions;
+
+-- Total revenue
+SELECT SUM(amount) AS total_revenue
+FROM transactions;
+
+-- Monthly revenue
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    SUM(amount) AS monthly_revenue
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY month;
+
+-- Months with more than 2 transactions
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    COUNT(*) AS transaction_count
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+HAVING COUNT(*) > 2
+ORDER BY month;
+
+-- Average transaction value per month
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    AVG(amount) AS avg_transaction_value
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY avg_transaction_value DESC;
+
+-- This last query calculates the average transaction value per month.
+-- First, it selects data from the transactions table.
+-- Then, it truncates the transaction_date to month level using the DATE_TRUNC function.
+-- Next, the data is grouped by month and the average amount is calculated for each month.
+-- Finally, the results are ordered from the highest to the lowest average transaction value.
 
 
