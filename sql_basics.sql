@@ -201,39 +201,43 @@ ORDER BY avg_transaction_value DESC;
 --   transaction_date    (date/time of transaction)
 --   amount              (transaction value, positive numbers assumed)
 
-ZADANIE A:
+-- Day 8 – Task A: Monthly revenue
+
 SELECT
     DATE_TRUNC('month', transaction_date) AS month,
-    SUM(amount) AS revenue_of_month
+    SUM(amount) AS monthly_revenue
 FROM transactions
-GROUP BY DATE_TRUNK('month', transaction_date)
-ORDER BY SUM(amount) DESC;
--- Query shows total revenue per month
--- Data is grouped by months
--- Result is sorted from the highest revenue per month 
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY monthly_revenue DESC;
 
-ZADANIE B:
+-- This query shows the total revenue per month.
+-- The data is grouped by month using the DATE_TRUNC function.
+-- The result is ordered from the highest to the lowest monthly revenue.
+-- Day 8 – Task B: Number of transactions per month
+
 SELECT
     DATE_TRUNC('month', transaction_date) AS month,
-    COUNT(*) AS numbers_of_transaction_monthly
+    COUNT(*) AS number_of_transactions
 FROM transactions
-GROUP BY DATE_TRUNK('month', transaction_date)
-ORDER BY COUNT(*) DESC;
--- Query shows how many  transactions were per month
--- Data is grouped by months
--- Result is sorted from the highest number of transaction monthly
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY number_of_transactions DESC;
 
-ZADANIE C
+-- This query shows the number of transactions per month.
+-- The data is grouped by month.
+-- The result is ordered from the highest to the lowest number of transactions.
+
+-- Day 8 – Task C: Average transaction value per month
+
 SELECT
     DATE_TRUNC('month', transaction_date) AS month,
-    AVG(amount) AS average_amount_by_month
+    AVG(amount) AS average_transaction_value
 FROM transactions
-GROUP BY DATE_TRUNK('month', transaction_date)
-ORDER BY AVG(amount) DESC;
--- Query shows average amount of transaction per month
--- Data is grouped by months
--- Result is sorted from the highest average amount of transaction per month 
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY average_transaction_value DESC;
 
+-- This query calculates the average transaction value per month.
+-- The data is grouped by month.
+-- The result is ordered from the highest to the lowest average transaction value.
 
 
 
