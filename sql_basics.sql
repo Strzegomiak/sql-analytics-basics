@@ -201,8 +201,6 @@ ORDER BY avg_transaction_value DESC;
 --   transaction_date    (date/time of transaction)
 --   amount              (transaction value, positive numbers assumed)
 
--- Day 8 – Task A: Monthly revenue
-
 SELECT
     DATE_TRUNC('month', transaction_date) AS month,
     SUM(amount) AS monthly_revenue
@@ -239,7 +237,51 @@ ORDER BY average_transaction_value DESC;
 -- The data is grouped by month.
 -- The result is ordered from the highest to the lowest average transaction value.
 
+-- ================================
+-- Day 9 repeat day  
+-- ================================
 
+
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    COUNT(*) AS transactions_per_month
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date) 
+HAVING COUNT(*) > 3
+ORDER BY month; (świadomy wybór aby użyć)
+
+-- This query shows the number of transactions per month.
+-- The data comes from the transactions table.
+-- Transactions are grouped by month using the DATE_TRUNC function.
+-- It filters to months with more than 3 transactions (HAVING COUNT(*) > 3).
+-- The results are ordered by month in ascending order.
+
+
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    SUM(amount) AS total_amount_per_month
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date) 
+HAVING SUM(amount) > 1000
+ORDER BY month DESC;
+
+-- This query calculates total revenue (SUM(amount)) per month.
+-- The data comes from the transactions table.
+-- Transactions are grouped by month using the DATE_TRUNC function.
+-- It filters to months where total revenue is greater than 1000.
+-- The results are ordered by month in descending order.
+
+SELECT 
+    DATE_TRUNC('month', transaction_date) AS month,
+    AVG(amount) AS average_amount_per_month
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date) 
+ORDER BY average_amount_per_month DESC;
+
+-- This query calculates the average transaction value per month.
+-- The data comes from the transactions table.
+-- Transactions are grouped by month using the DATE_TRUNC function.
+-- The results are ordered from the highest to the lowest average value.
 
 
 
