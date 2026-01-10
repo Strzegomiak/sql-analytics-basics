@@ -393,8 +393,13 @@ FROM (
             ELSE 'low'
         END AS category
     FROM transactions
-) t
 GROUP BY category
 ORDER BY number_of_transactions DESC;
+
+-- ================================
+-- Day 11 CASE WHEN next 
+-- ================================
+
+ 
 
 
