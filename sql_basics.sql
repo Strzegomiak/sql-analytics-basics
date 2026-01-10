@@ -241,7 +241,6 @@ ORDER BY average_transaction_value DESC;
 -- Day 9 repeat day  
 -- ================================
 
-
 SELECT
     DATE_TRUNC('month', transaction_date) AS month,
     COUNT(*) AS transactions_per_month
@@ -283,9 +282,119 @@ ORDER BY average_amount_per_month DESC;
 -- Transactions are grouped by month using the DATE_TRUNC function.
 -- The results are ordered from the highest to the lowest average value.
 
+-- ============================================
+-- Day 10 — CASE WHEN (business logic in SQL)
+-- Database: PostgreSQL (works similarly in other SQL dialects)
+-- Table: transactions
+-- Assumed columns:
+--   - transaction_date (date / timestamp)
+--   - amount (numeric)
+-- ============================================
 
 
+-- 1) Label each transaction as high/low value
+-- Business idea: classify single transactions based on amount.
+SELECT
+    transaction_date,
+    amount,
+    CASE
+        WHEN amount >= 200 THEN 'high'
+        ELSE 'low'
+    END AS transaction_category
+FROM transactions
+ORDER BY transaction_date;
 
 
+-- 2) Count transactions by category (high vs low)
+-- Business idea: compare how many transactions fall into each segment.
+SELECT
+    CASE
+        WHEN amount >= 200 THEN 'high'
+        ELSE 'low'
+    END AS transaction_category,
+    COUNT(*) AS number_of_transactions
+FROM transactions
+GROUP BY
+    CASE
+        WHEN amount >= 200 THEN 'high'
+        ELSE 'low'
+    END
+ORDER BY number_of_transactions DESC;
+
+
+-- 3) Segment transactions into small / medium / large
+-- Business idea: create 3 value buckets (typical segmentation).
+SELECT
+    amount,
+    CASE
+        WHEN amount < 100 THEN 'small'
+        WHEN amount BETWEEN 100 AND 300 THEN 'medium'
+        ELSE 'large'
+    END AS transaction_size
+FROM transactions
+ORDER BY amount;
+
+
+-- 4) Count transactions by size (small / medium / large)
+SELECT
+    CASE
+        WHEN amount < 100 THEN 'small'
+        WHEN amount BETWEEN 100 AND 300 THEN 'medium'
+        ELSE 'large'
+    END AS transaction_size,
+    COUNT(*) AS number_of_transactions
+FROM transactions
+GROUP BY
+    CASE
+        WHEN amount < 100 THEN 'small'
+        WHEN amount BETWEEN 100 AND 300 THEN 'medium'
+        ELSE 'large'
+    END
+ORDER BY number_of_transactions DESC;
+
+
+-- 5) Monthly transaction count + activity label (busy / quiet)
+-- Business idea: label each month depending on volume of transactions.
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    COUNT(*) AS transactions_count,
+    CASE
+        WHEN COUNT(*) >= 5 THEN 'busy'
+        ELSE 'quiet'
+    END AS month_activity
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY month;
+
+
+-- 6) Monthly revenue + revenue label (high / low) with threshold 1000
+-- Business idea: label each month depending on total revenue.
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    SUM(amount) AS monthly_revenue,
+    CASE
+        WHEN SUM(amount) >= 1000 THEN 'high'
+        ELSE 'low'
+    END AS revenue_category
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY month;
+
+
+-- 7) Cleaner version (recommended): compute CASE once in a subquery
+-- Business idea: avoid repeating CASE in both SELECT and GROUP BY.
+SELECT
+    category AS transaction_category,
+    COUNT(*) AS number_of_transactions
+FROM (
+    SELECT
+        CASE
+            WHEN amount >= 200 THEN 'high'
+            ELSE 'low'
+        END AS category
+    FROM transactions
+) t
+GROUP BY category
+ORDER BY number_of_transactions DESC;
 
 
