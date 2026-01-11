@@ -283,7 +283,7 @@ ORDER BY average_amount_per_month DESC;
 -- The results are ordered from the highest to the lowest average value.
 
 -- ============================================
--- Day 10 — CASE WHEN (business logic in SQL)
+-- Day 10 & 11 — CASE WHEN (business logic in SQL)
 -- Database: PostgreSQL (works similarly in other SQL dialects)
 -- Table: transactions
 -- Assumed columns:
@@ -393,13 +393,54 @@ FROM (
             ELSE 'low'
         END AS category
     FROM transactions
+    ) t
 GROUP BY category
 ORDER BY number_of_transactions DESC;
 
--- ================================
--- Day 11 CASE WHEN next 
--- ================================
+-- ============================
+-- Day 12 – Aggregation & CASE
+-- ============================
 
- 
+-- 1. Monthly transaction count and revenue
+-- This query shows the number of transactions and total revenue for each month,
+-- allowing analysis of business trends over time.
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    COUNT(*) AS transaction_count,
+    SUM(amount) AS monthly_revenue
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+ORDER BY month;
+
+-- 2. Busy months (high transaction volume)
+-- This query identifies months with at least five transactions,
+-- helping assess periods of high operational workload.
+SELECT
+    DATE_TRUNC('month', transaction_date) AS month,
+    COUNT(*) AS transaction_count
+FROM transactions
+GROUP BY DATE_TRUNC('month', transaction_date)
+HAVING COUNT(*) >= 5
+ORDER BY transaction_count DESC;
+
+-- 3. Transaction value segmentation (high vs low)
+-- This query classifies transactions into high and low value categories
+-- and counts how many transactions fall into each segment.
+SELECT
+    transaction_category,
+    COUNT(*) AS number_of_transactions
+FROM (
+    SELECT
+        CASE
+            WHEN amount >= 200 THEN 'high'
+            ELSE 'low'
+        END AS transaction_category
+    FROM transactions
+) t
+GROUP BY transaction_category
+ORDER BY number_of_transactions DESC;
+
+
+
 
 
