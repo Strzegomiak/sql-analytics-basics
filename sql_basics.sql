@@ -550,7 +550,7 @@ ORDER BY total_revenue_amount_gt_0 DESC, c.customer_id;
 SELECT
     c.customer_id,
     c.customer_name,
-    COALESCE(SUM(t.amount), 0) AS total_revenue_amount_gt_0
+    COALESCE(SUM(t.amount), 0) AS total_revenue_amount
 FROM customers c
 LEFT JOIN transactions t
     ON c.customer_id = t.customer_id
@@ -559,5 +559,15 @@ GROUP BY
     c.customer_id,
     c.customer_name
 ORDER BY total_revenue_amount_gt_0 DESC, c.customer_id;
+ 
 
+
+
+
+
+
+
+
+
+    
 
