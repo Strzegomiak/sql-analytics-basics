@@ -96,15 +96,58 @@ ORDER BY amount DESC;
    - GROUP BY: best for summary report (one row per customer)
    - WINDOW: best for analysis when we must keep transaction-level detail
    ========================================================= */
+/* =========================================================
+   DAY 21 — CD
+   ========================================================= */
 
-/*
-Example GROUP BY (summary report):
-SELECT customer_id, SUM(amount) AS total_customer_revenue
-FROM transactions
-GROUP BY customer_id;
+-- Zewnętrzne zapytanie filtruje już GOTOWY ranking
+-- Tutaj alias transaction_rank jest już dostępny
+SELECT
+    transaction_id,
+    customer_id,
+    amount
+FROM (
+    -- Wewnętrzne zapytanie:
+    -- 1. Dla każdego klienta (PARTITION BY customer_id)
+    -- 2. Nadajemy ranking transakcjom według kwoty (ORDER BY amount DESC)
+    -- 3. RANK() pozwala na remisy (kilka transakcji może mieć rank = 1)
+    SELECT
+        transaction_id,
+        customer_id,
+        amount,
+        RANK() OVER (
+            PARTITION BY customer_id
+            ORDER BY amount DESC
+        ) AS transaction_rank
+    FROM transactions
+) t
+-- Zostawiamy tylko największą transakcję (lub kilka przy remisie)
+WHERE transaction_rank = 1;
 
-Example WINDOW (analysis with detail):
-SELECT transaction_id, customer_id, amount,
-       SUM(amount) OVER (PARTITION BY customer_id) AS total_customer_revenue
-FROM transactions;
-*/
+
+-- Zewnętrzne zapytanie filtruje wynik funkcji okna
+-- ROW_NUMBER() zawsze numeruje wiersze unikalnie
+SELECT
+    transaction_id,
+    customer_id,
+    amount
+FROM (
+    -- Wewnętrzne zapytanie:
+    -- 1. Ranking liczony osobno dla każdego klienta
+    -- 2. Sortowanie po kwocie malejąco
+    -- 3. ROW_NUMBER() wymusza dokładnie jeden rekord z numerem 1
+    SELECT
+        transaction_id,
+        customer_id,
+        amount,
+        ROW_NUMBER() OVER (
+            PARTITION BY customer_id
+            ORDER BY amount DESC
+        ) AS transaction_rank
+    FROM transactions
+) t
+-- Zawsze jedna transakcja na klienta
+WHERE transaction_rank = 1;
+
+ 
+
