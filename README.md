@@ -9,33 +9,6 @@ The goal of this repository is to demonstrate the development of analytical thin
 
 ---
 
-# Repository Structure
-
-sql-analytics-basics
-│
-├── 01_sql_fundamentals
-│ Core SQL concepts and analytical foundations
-│
-├── 02_postgresql_foundation
-│ PostgreSQL-specific features and analytical techniques
-│
-├── 03_sql_analytical_workflow
-│ End-to-end analytical queries used in business analysis
-│
-├── 04_case_studies
-│ Business-oriented SQL analysis
-│
-├── 05_interview_sql
-│ Common SQL interview problems
-│
-├── 06_portfolio_projects
-│ Full analytical projects
-│
-└── assets
-Schemas, notes and supporting materials
-
----
-
 # Learning Stages
 
 ## 1️⃣ SQL Fundamentals
