@@ -180,6 +180,23 @@ Based on the experiment results:
 
 ---
 
+# Dataset
+
+This project uses a simulated A/B testing dataset provided as part of a portfolio project template.
+
+The dataset represents a hypothetical ecommerce checkout experiment and includes:
+
+- experiment variants,
+- user conversions,
+- revenue,
+- device segmentation,
+- user type segmentation,
+- guardrail metrics.
+
+The project focuses on analytical workflow, experiment validation, KPI interpretation, and business recommendation using PostgreSQL and Power BI.
+
+---
+
 # Author
 
 Łukasz Strzegomiak
