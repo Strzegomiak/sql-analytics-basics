@@ -1,19 +1,10 @@
-# SQL Analytics Learning
+# Repository Structure
 
-This repository documents my journey learning SQL for data analytics.  
-It contains structured exercises and analytical queries based on real-world business scenarios.
+## 01_sql_fundamentals
 
-The project follows a step-by-step progression from SQL fundamentals to analytical SQL used in real business analysis.
+Core SQL concepts and foundational analytical queries.
 
-The goal of this repository is to demonstrate the development of analytical thinking and practical SQL skills used in data analysis, revenue analytics, customer analytics, and product metrics.
-
----
-
-# Learning Stages
-
-## 1️⃣ SQL Fundamentals
-
-Topics covered:
+Topics include:
 
 - SELECT
 - filtering
@@ -23,35 +14,33 @@ Topics covered:
 - subqueries
 - CASE statements
 - EXISTS
-- basic analytical queries
 
-Examples include:
-
-- revenue aggregation
-- customer metrics
-- transaction analysis
-- basic business reporting
+Focus:
+building SQL fundamentals and analytical thinking.
 
 ---
 
-## 2️⃣ PostgreSQL Foundation
+## 02_postgresql_foundation
 
-PostgreSQL analytical features:
+Intermediate and advanced PostgreSQL analytical features.
 
-- advanced window functions
+Topics include:
+
+- window functions
 - ranking functions
 - NTILE segmentation
-- benchmark calculations
-- distribution analysis
+- rolling calculations
 - Pareto analysis
+- distribution analysis
 
-These queries simulate typical analytical tasks in real companies.
+Focus:
+real analytical SQL workflows used in business environments.
 
 ---
 
-## 3️⃣ SQL Analytical Workflow
+## 03_sql_analytical_workflow
 
-The final stage focuses on real analytical patterns used by data analysts.
+Advanced analytical SQL patterns used by data analysts.
 
 Topics include:
 
@@ -59,61 +48,90 @@ Topics include:
 - Customer Lifetime Value (CLV)
 - Cohort analysis
 - Funnel analysis
-- revenue analysis
-- rolling metrics
-- Month-over-Month (MoM) growth
-- cumulative revenue analysis
-
-Example analytical tasks:
-
-- identifying high-value customers
-- measuring customer retention
-- analyzing conversion funnels
-- tracking revenue growth over time
-
----
-
-# Skills Demonstrated
-
-SQL techniques used in this repository:
-
-- Common Table Expressions (CTE)
-- window functions
-- LAG / LEAD
-- ranking functions
-- rolling metrics
-- cohort analysis
-- customer segmentation
-- funnel analysis
+- retention analysis
 - revenue analytics
-- analytical SQL workflow
+- rolling metrics
+- Month-over-Month growth
+
+Focus:
+business-oriented SQL analysis and KPI calculations.
 
 ---
 
-# Tools
+## 04_case_studies
 
-SQL dialect used in this project:
+End-to-end analytical case studies combining:
 
-PostgreSQL
+- SQL
+- PostgreSQL
+- Excel
+- Power BI
+
+Projects simulate real business analysis scenarios such as:
+
+- revenue analysis
+- customer analysis
+- product performance
+- business KPI reporting
+
+Focus:
+complete analytical workflow from raw data to business insights.
 
 ---
 
-# Repository Purpose
+## 05_excel_project
 
-This repository serves as:
+Excel-based analytical exercises and mini projects.
 
-- a structured SQL learning journey
-- a portfolio of analytical SQL queries
-- preparation for Data Analyst / Finance Analyst roles
+Topics include:
+
+- Pivot Tables
+- lookups
+- data cleaning
+- aggregations
+- business reporting
+
+Focus:
+using Excel as a supporting analytical tool in the data workflow.
 
 ---
 
-# Future Additions
+## 06_power_bi
 
-Planned additions include:
+Power BI dashboards and reporting projects.
 
-- full SQL case studies
-- interview SQL problem sets
-- end-to-end analytical projects
-- business metric analysis
-- dashboard-ready SQL queries
+Topics include:
+
+- dashboard creation
+- KPI visualization
+- data modeling
+- DAX basics
+- business reporting
+
+Focus:
+transforming analytical results into business-ready dashboards.
+
+---
+
+## 07_portfolio_projects
+
+Market-oriented portfolio projects focused on business analytics.
+
+Projects combine:
+
+- SQL
+- PostgreSQL
+- Excel
+- Power BI
+- business storytelling
+- analytical insights
+
+Each project includes:
+
+- business problem definition
+- SQL analysis
+- dashboard development
+- insights and recommendations
+
+Focus:
+building portfolio projects for Junior Data Analyst roles.
