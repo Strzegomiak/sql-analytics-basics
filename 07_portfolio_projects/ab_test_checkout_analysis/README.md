@@ -180,6 +180,23 @@ Na podstawie wyników eksperymentu:
 
 ---
 
+# Dataset
+
+Projekt wykorzystuje symulowany dataset A/B testingowy dostarczony jako część szablonu projektu portfolio.
+
+Dane przedstawiają hipotetyczny eksperyment ecommerce dotyczący procesu checkout i zawierają m.in.:
+
+- warianty eksperymentu,
+- informacje o konwersji użytkowników,
+- revenue,
+- segmentację urządzeń,
+- segmentację nowych i powracających użytkowników,
+- guardrail metrics.
+
+Projekt skupia się na workflow analitycznym, walidacji eksperymentu, interpretacji KPI oraz rekomendacji biznesowej z wykorzystaniem PostgreSQL i Power BI.
+
+---
+
 # Autor
 
 Łukasz Strzegomiak
