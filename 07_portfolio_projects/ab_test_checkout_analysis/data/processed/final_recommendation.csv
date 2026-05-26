@@ -1,0 +1,6 @@
+"area","status","interpretation"
+"Conversion uplift","Positive","Treatment improves conversion rate"
+"Revenue impact","Positive","Treatment increases revenue per user"
+"Guardrail metrics","Healthy","No negative impact detected"
+"Segment performance","Stable","Positive uplift across major segments"
+"Final recommendation","Ship treatment","Rollout recommended"

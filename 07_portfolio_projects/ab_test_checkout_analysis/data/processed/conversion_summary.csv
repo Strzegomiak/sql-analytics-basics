@@ -1,0 +1,3 @@
+"variant","users","conversions","conversion_rate_pct","total_revenue","avg_revenue_per_user","avg_order_value"
+"control","50000","5421","10.84","459206.81","9.18","84.71"
+"treatment","50000","6396","12.79","544319.48","10.89","85.10"
